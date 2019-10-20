@@ -56,6 +56,7 @@ public class MaBanqueApplication implements CommandLineRunner {
 		operationRepository.save(new Retrait(new Date(), 3500, cp2));
 		operationRepository.save(new Versement(new Date(), 150, cp2));
 		
+		
 	}
 
 }
