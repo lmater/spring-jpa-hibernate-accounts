@@ -9,10 +9,6 @@ import javax.persistence.Entity;
 @DiscriminatorValue("CE")
 public class CompteEpargne extends Compte {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 2681299985715102888L;
 	private double taux;
 
 	public CompteEpargne() {

@@ -8,10 +8,6 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("V")
 public class Versement extends Operation {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6778549856471694266L;
 
 	public Versement() {
 		super();

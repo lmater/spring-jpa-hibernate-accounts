@@ -12,10 +12,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Client implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1686738589434022231L;
 	@Id
 	@GeneratedValue
 	private Long code;

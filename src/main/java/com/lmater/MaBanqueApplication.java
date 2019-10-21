@@ -18,6 +18,7 @@ import com.lmater.entities.CompteEpargne;
 import com.lmater.entities.Operation;
 import com.lmater.entities.Retrait;
 import com.lmater.entities.Versement;
+import com.lmater.metier.impl.BanqueMetierImpl;
 
 @SpringBootApplication
 public class MaBanqueApplication implements CommandLineRunner {
@@ -31,6 +32,9 @@ public class MaBanqueApplication implements CommandLineRunner {
 	@Autowired
 	private OperationRepository operationRepository;
 
+	@Autowired
+	private BanqueMetierImpl banqueMetierImpl;
+
 	public static void main(String[] args) {
 		SpringApplication.run(MaBanqueApplication.class, args);
 //		ApplicationContext ctx = SpringApplication.run(MaBanqueApplication.class, args);
@@ -40,23 +44,26 @@ public class MaBanqueApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Client c1=clientRepository.save(new Client("lmater  1", "@gmail 1"));
-		Client c2=clientRepository.save(new Client("lmater  2", "@gmail 2"));
+		Client c1 = clientRepository.save(new Client("lmater  1", "@gmail 1"));
+		Client c2 = clientRepository.save(new Client("lmater  2", "@gmail 2"));
 
-		Compte cp1=compteRepository.save(new CompteCourant("c1", new Date(), 9000,c1,6000));
-		Compte cp2=compteRepository.save(new CompteEpargne("c2", new Date(), 4000,c2,5.5));
+		Compte cp1 = compteRepository.save(new CompteCourant("c1", new Date(), 9000, c1, 6000));
+		Compte cp2 = compteRepository.save(new CompteEpargne("c2", new Date(), 4000, c2, 5.5));
 
 		operationRepository.save(new Versement(new Date(), 550, cp1));
 		operationRepository.save(new Versement(new Date(), 150, cp1));
 		operationRepository.save(new Retrait(new Date(), 350, cp1));
 		operationRepository.save(new Versement(new Date(), 1050, cp1));
-		
+
 		operationRepository.save(new Versement(new Date(), 5550, cp2));
 		operationRepository.save(new Versement(new Date(), 1520, cp2));
 		operationRepository.save(new Retrait(new Date(), 3500, cp2));
 		operationRepository.save(new Versement(new Date(), 150, cp2));
-		
-		
+
+		System.out.println("consulterCompte: "+banqueMetierImpl.consulterCompte(cp1.getCode()).getClient().getName());
+		banqueMetierImpl.verser(cp1.getCode(), 1111111111);
+		banqueMetierImpl.retirer(cp1.getCode(), 111);
+		banqueMetierImpl.virement(cp1.getCode(), cp2.getCode(), 1111111111);
 	}
 
 }

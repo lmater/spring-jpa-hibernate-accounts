@@ -68,7 +68,8 @@ public class BanqueMetierImpl implements IBanqueMetier {
 	@Override
 	public Page<Operation> listOperation(String codeCompte, int page, int size) {
 
-		return operationRepository.listOperation(codeCompte, new PageRequest(page, size));
+		return operationRepository.listOperation(codeCompte, PageRequest.of(page, size));
+
 	}
 
 }

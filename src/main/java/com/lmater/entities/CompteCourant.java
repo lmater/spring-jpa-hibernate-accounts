@@ -10,10 +10,6 @@ import javax.persistence.Entity;
 @DiscriminatorValue("CC")
 
 public class CompteCourant extends Compte {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5209287599174925815L;
 	private double decouvert;
 
 	public CompteCourant() {
