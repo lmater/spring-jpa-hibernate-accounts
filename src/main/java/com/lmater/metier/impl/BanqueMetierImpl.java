@@ -37,7 +37,7 @@ public class BanqueMetierImpl implements IBanqueMetier {
 	}
 
 	@Override
-	public void verser(String codeCompte, double montant) {
+	public void verser(String codeCompte, double montant)  throws Exception{
 		Compte cp = consulterCompte(codeCompte);
 		Versement v = new Versement(new Date(), montant, cp);
 		operationRepository.save(v);
@@ -46,12 +46,12 @@ public class BanqueMetierImpl implements IBanqueMetier {
 	}
 
 	@Override
-	public void retirer(String codeCompte, double montant) {
+	public void retirer(String codeCompte, double montant)  throws Exception{
 		Compte cp = consulterCompte(codeCompte);
 		double facilitiescaisse = 0;
 		if (cp instanceof CompteCourant)
 			facilitiescaisse = ((CompteCourant) cp).getDecouvert();
-		if (cp.getSolde() + facilitiescaisse < montant)
+		if ((cp.getSolde() + facilitiescaisse) < montant)
 			throw new RuntimeException("Solde Insiffusant");
 		Retrait r = new Retrait(new Date(), montant, cp);
 		operationRepository.save(r);
@@ -60,7 +60,9 @@ public class BanqueMetierImpl implements IBanqueMetier {
 	}
 
 	@Override
-	public void virement(String codeCompte_1, String codeCompt_2, double montant) {
+	public void virement(String codeCompte_1, String codeCompt_2, double montant)  throws Exception{
+		if(codeCompte_1.equals(codeCompt_2))
+			throw new RuntimeException("impossible virement sur le memecompte");
 		retirer(codeCompte_1, montant);
 		verser(codeCompt_2, montant);
 	}

@@ -45,11 +45,11 @@ public abstract class Compte implements Serializable {
 	}
 
 
-	public String getCode() {
+	public String getCodeCompte() {
 		return codeCompte;
 	}
 
-	public void setCode(String code) {
+	public void setCodeCompte(String code) {
 		this.codeCompte = code;
 	}
 

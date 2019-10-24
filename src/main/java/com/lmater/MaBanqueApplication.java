@@ -60,10 +60,11 @@ public class MaBanqueApplication implements CommandLineRunner {
 		operationRepository.save(new Retrait(new Date(), 3500, cp2));
 		operationRepository.save(new Versement(new Date(), 150, cp2));
 
-		System.out.println("consulterCompte: "+banqueMetierImpl.consulterCompte(cp1.getCode()).getClient().getName());
-		banqueMetierImpl.verser(cp1.getCode(), 1111111111);
-		banqueMetierImpl.retirer(cp1.getCode(), 111);
-		banqueMetierImpl.virement(cp1.getCode(), cp2.getCode(), 1111111111);
+		System.out.println("consulterCompte: "+banqueMetierImpl.consulterCompte(cp1.getCodeCompte()).getClient().getName());
+
+		banqueMetierImpl.verser(cp1.getCodeCompte(), 11111);
+		banqueMetierImpl.retirer(cp1.getCodeCompte(), 111);
+		banqueMetierImpl.virement(cp1.getCodeCompte(), cp2.getCodeCompte(), 11111);
 	}
 
 }
