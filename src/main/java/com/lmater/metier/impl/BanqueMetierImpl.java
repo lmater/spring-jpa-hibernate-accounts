@@ -62,7 +62,7 @@ public class BanqueMetierImpl implements IBanqueMetier {
 	@Override
 	public void virement(String codeCompte_1, String codeCompt_2, double montant)  throws Exception{
 		if(codeCompte_1.equals(codeCompt_2))
-			throw new RuntimeException("impossible virement sur le memecompte");
+			throw new RuntimeException("impossible virement sur le meme compte");
 		retirer(codeCompte_1, montant);
 		verser(codeCompt_2, montant);
 	}

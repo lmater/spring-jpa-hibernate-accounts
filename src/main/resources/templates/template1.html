@@ -20,11 +20,14 @@
 
 
 <body class="hold-transition sidebar-mini layout-fixed">
-<!-- 	    <nav class="nav nav-pills spacer"> -->
-<!-- 	      <a class="nav-link active nav-item" th:href="@{/clients}">Clients</a> -->
-<!-- 	      <a class="nav-link" th:href="@{/comptes}">Comptes</a> -->
-<!-- 	      <a class="nav-link" th:href="@{/operations}">Operations</a> -->
-<!-- 	    </nav> -->
+	<nav class="nav nav-pills spacer">
+		<a class="nav-link active nav-item" th:href="@{/clients}">Clients</a>
+		<a class="nav-link" th:href="@{/comptes}">Comptes</a> <a
+			class="nav-link" th:href="@{/operations}">Operations</a> <label
+			class="nav-link navbar-right">[[${#httpServletRequest.remoteUser}]]</label>
+		<a class="nav-link navbar-right" th:href="@{/login?logout}"
+			th:inline="text">Logout</a>
+	</nav>
 	<div class="container-fluid  spacer">
 		<main layout:fragment="content"></main>
 	</div>

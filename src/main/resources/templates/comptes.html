@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xlmns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
 	layout:decorator="template1">
 
 <head>
@@ -36,7 +37,7 @@
 			</div>
     </div>
     <div class="col">
-			<div class="card" style="width: 18rem;" th:if="${compte}">
+			<div  sec:authorize="hasRole('ROLE_ADMIN')" class="card" style="width: 18rem;" th:if="${compte}">
 				<div class="card-body">
 					<h5 class="card-title card-warning">Operations sur le compte</h5>
 					<form th:action="@{saveOperation}" method="post">

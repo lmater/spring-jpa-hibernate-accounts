@@ -47,15 +47,20 @@ public class BanqueController {
 
 	@RequestMapping(value = "/saveOperation", method = RequestMethod.POST)
 	public String saveOperation(Model model, String typeOperation, String codeCompte, String codeCompte2,
-			double montant) {
-
+			String montant) {
 		try {
-			if (typeOperation.equals("VERS"))
-				banqueMetier.verser(codeCompte, montant);
-			else if (typeOperation.equals("VERM"))
-				banqueMetier.virement(codeCompte, codeCompte2, montant);
-			else if (typeOperation.equals("RETR"))
-				banqueMetier.retirer(codeCompte, montant);
+			double montantDouble = Double.valueOf(montant);
+			if (typeOperation.equals("VERS")) {
+				banqueMetier.verser(codeCompte, montantDouble);
+			} else if (typeOperation.equals("VERM")) {
+				if (codeCompte2 != null && !codeCompte2.isEmpty()) {
+					banqueMetier.virement(codeCompte, codeCompte2, montantDouble);
+				} else {
+					throw new RuntimeException("Compte distination est vide");
+				}
+			} else if (typeOperation.equals("RETR")) {
+				banqueMetier.retirer(codeCompte, montantDouble);
+			}
 		} catch (Exception e) {
 			model.addAttribute("error", e);
 			return "redirect:/consulterCompte?codeCompte=" + codeCompte + "&error=" + e.getMessage();
