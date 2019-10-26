@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Client implements Serializable {
 
@@ -54,6 +56,8 @@ public class Client implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@JsonIgnore
 
 	public Collection<Compte> getCompte() {
 		return compte;

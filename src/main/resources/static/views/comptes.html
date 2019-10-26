@@ -1,0 +1,61 @@
+<div ui-view>
+	<div class="container">
+		<div class="panel  panel-primary">
+			<div class="panel-heading  panel-primary">
+				<h5>Information du compte</h5>
+			</div>
+			<div class="panel-body">
+				<div class="container">
+					<label>Code Compte:</label>
+					<input type="text" ng-model="codeCompte" />
+					<button ng-click="chercher()" class="btn btn-primary">Ok</button>
+				</div>
+				<table class="table table-striped ">
+					<tr>
+						<th>Num</th>
+						<th>Date</th>
+						<th>Montant</th>
+					</tr>
+					<tr ng-repeat="e in listOperations.content">
+						<td>{{e.numero}}</td>
+						<td>{{e.dateOperation}}</td>
+						<td>{{e.montant}}</td>
+					</tr>
+				</table>
+				<div class="container">
+					<ul class="nav nav-pills">
+						<li ng-class="{'active' :pageCourante==$index}" class="clickable"
+							ng-repeat="p in pages track by $index">
+							<a ng-click="gotoPage($index)">{{$index}}</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- <div class="panel  panel-primary">
+		<div class="panel-heading  panel-primary">
+			<h5>Information du compte</h5>
+		</div>
+		<div class="panel-body">
+			<div>
+				<label>Client:</label> <label th:text="${compte.client.name}"></label>
+
+			</div>
+			<label>Code:</label> <label th:text="${compte.codeCompte}">
+			</label><br> <label>Solde:</label> <label th:text="${compte.solde}"></label><br>
+			<label>Date creation:</label> <label th:text="${compte.dateCreation}"></label> <br>
+			<div th:if="${compte.class.simpleName=='CompteCourant'}">
+				<label>Decouvert:</label> <label th:text="${compte.decouvert}"></label>
+			</div>
+			<div th:if="${compte.class.simpleName=='CompteEpargne'}">
+				<label>Epargne:</label> <label th:text="${compte.taux}"></label>
+			</div>
+		</div>
+	</div> -->
+
+
+
+</div>

@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_CPTE", discriminatorType = DiscriminatorType.STRING, length = 2)
@@ -76,7 +78,8 @@ public abstract class Compte implements Serializable {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-
+	
+	@JsonIgnore
 	public Collection<Operation> getOperations() {
 		return operations;
 	}
